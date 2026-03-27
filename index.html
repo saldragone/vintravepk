@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinnie Trav — Electronic Press Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C5A55A;
+      --gold-light: #D4BC7C;
+      --dark: #1a1a1a;
+      --darker: #111111;
+      --text: #e0e0e0;
+      --text-muted: #999999;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--darker);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── THREE-COLUMN LAYOUT ── */
+    .epk {
+      display: grid;
+      grid-template-columns: 28% 1fr 300px;
+      min-height: 100vh;
+    }
+
+    /* ── LEFT: PRESS PHOTO ── */
+    .col-photo {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .col-photo > img {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      min-height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .col-photo {
+      min-height: 100%;
+    }
+
+    .artist-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* ── CENTER: MAIN CONTENT ── */
+    .col-main {
+      padding: 40px 36px;
+      overflow-y: auto;
+    }
+
+    .block { margin-bottom: 36px; }
+    .block:last-child { margin-bottom: 0; }
+
+    .block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Bio */
+    .bio p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .bio p:last-child { margin-bottom: 0; }
+    .hl { color: var(--gold-light); font-weight: 500; }
+
+    /* Highlights */
+    .highlights {
+      list-style: none;
+      padding: 0;
+    }
+
+    .highlights li {
+      font-size: 0.84rem;
+      padding: 5px 0;
+      padding-left: 16px;
+      position: relative;
+      color: var(--text);
+    }
+
+    .highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* Music */
+    .music-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .music-row iframe {
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .yt-thumb {
+      display: block;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .yt-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .yt-thumb svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+    }
+
+    /* Shows */
+    .shows-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: rgba(197,165,90,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(197,165,90,0.1);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .shows-list::-webkit-scrollbar { width: 3px; }
+    .shows-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    .shows-list::-webkit-scrollbar-track { background: var(--dark); }
+
+    .show-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--dark);
+    }
+
+    .show-date { text-align: center; }
+
+    .show-date .month {
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .show-date .day {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .show-date .dow {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .show-info .show-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .show-info .show-time {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .shows-loading, .shows-empty {
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: var(--dark);
+      border-radius: 6px;
+      border: 1px solid rgba(197,165,90,0.1);
+    }
+
+    .calendar-note {
+      margin-top: 8px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .calendar-note a { color: var(--gold); }
+
+    /* Contact */
+    .contact-info p,
+    .contact-info a {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover { color: var(--gold); }
+
+    .social-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social-row a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 6px 10px;
+      border: 1px solid rgba(197,165,90,0.2);
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .social-row a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(197,165,90,0.06);
+    }
+
+    .social-row svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* ── RIGHT: DOWNLOADS ── */
+    .col-right {
+      padding: 40px 24px;
+      background: rgba(20,20,20,0.6);
+      border-left: 1px solid rgba(197,165,90,0.08);
+      overflow-y: auto;
+    }
+
+    .col-right .block-title {
+      font-size: 1.3rem;
+    }
+
+    .downloads-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .download-card {
+      background: var(--dark);
+      border: 1px solid rgba(197,165,90,0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+
+    .download-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .download-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .download-card .logo-preview {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    .download-card .logo-preview img {
+      width: 55%;
+      height: auto;
+      object-fit: contain;
+      mix-blend-mode: screen;
+    }
+
+    .download-card .dl-label {
+      padding: 7px 10px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+
+    .download-card:hover .dl-label { color: var(--gold); }
+
+    .dl-label svg {
+      width: 12px;
+      height: 12px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER (inside col-main) ── */
+    .footer-line {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(197,165,90,0.08);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .epk {
+        grid-template-columns: 35% 1fr;
+      }
+      .col-right {
+        display: none;
+      }
+      /* show downloads inline in main col on tablet */
+      .mobile-downloads { display: block !important; }
+    }
+
+    @media (max-width: 700px) {
+      .epk {
+        grid-template-columns: 1fr;
+      }
+      .col-photo {
+        height: 50vh;
+      }
+      .col-photo img {
+        position: relative;
+        height: 100%;
+      }
+      .col-main { padding: 28px 20px; }
+      .music-row { grid-template-columns: 1fr; }
+      .mobile-downloads { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="epk">
+
+  <!-- LEFT: Press Photo -->
+  <div class="col-photo">
+    <img src="drive-download-20260327T160708Z-3-001/4DF44820-7F87-4BBB-95B3-9144921F4393_1_105_c.jpeg" alt="Vinnie Trav">
+  </div>
+
+  <!-- CENTER: Content -->
+  <div class="col-main">
+
+    <div class="block">
+      <h1 class="artist-name">Vinnie Trav</h1>
+      <p class="tagline">South Jersey &bull; Country &bull; Rock &bull; Americana</p>
+    </div>
+
+    <div class="block bio">
+      <p>
+        <span class="hl">Vinnie Trav</span> is a singer-songwriter based in South New Jersey,
+        bringing high-energy original music and crowd-favorite covers to stages across the
+        Philadelphia and South Jersey region. Performing as a <span class="hl">trio and full band</span>,
+        he delivers an authentic, feel-good experience rooted in country, rock, and Americana.
+      </p>
+      <ul class="highlights">
+        <li><span class="hl">40+ shows booked for 2026</span> across South NJ &amp; the Philly region</li>
+        <li>Venues: The Mill Tavern, Bourbon &amp; Brews, MudHen Brewing, Autumn Lake Winery</li>
+        <li>Festivals: Gloucester County 4-H Fair, Salem County Fair, Melodies on Main St</li>
+        <li>Latest release: <em>&ldquo;The Longer it Goes&rdquo;</em></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2 class="block-title">Music</h2>
+      <div class="music-row">
+        <iframe style="border-radius:6px" src="https://open.spotify.com/embed/artist/6BI6AUaXqsgIFW2pnVCCBT?utm_source=generator&theme=0" height="160" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <a class="yt-thumb" href="https://www.youtube.com/watch?v=xbNyWZzGG2c" target="_blank" style="height:160px;">
+          <img src="https://img.youtube.com/vi/xbNyWZzGG2c/maxresdefault.jpg" alt="Vinnie Trav - Live">
+          <svg viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2 class="block-title">Upcoming Shows</h2>
+      <div id="shows-container">
+        <div class="shows-loading">Loading shows&hellip;</div>
+      </div>
+      <p class="calendar-note">
+        Synced from Google Calendar &mdash;
+        <a href="https://vinnietrav.com">vinnietrav.com</a> for full schedule.
+      </p>
+    </div>
+
+    <div class="block">
+      <h2 class="block-title">Booking &amp; Press</h2>
+      <div class="contact-info">
+        <p>
+          <strong>Vinnie Trav</strong><br>
+          <a href="tel:6093648923">609-364-8923</a><br>
+          <a href="https://vinnietrav.com/contact-us">vinnietrav.com/contact-us</a>
+        </p>
+      </div>
+      <div class="social-row">
+        <a href="https://www.facebook.com/vinnietrav" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+        <a href="https://www.instagram.com/vinnietrav/" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.tiktok.com/@vinnietrav" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          TikTok
+        </a>
+        <a href="https://www.youtube.com/channel/UCL5aMqUEDkfC0Sx-oVIT-Hw" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- Downloads shown inline on smaller screens -->
+    <div class="block mobile-downloads" style="display:none;">
+      <h2 class="block-title">Photos &amp; Downloads</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" id="mobile-dl"></div>
+    </div>
+
+    <div class="footer-line">
+      &copy; 2026 Vinnie Trav. All Rights Reserved.
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Photos & Downloads -->
+  <div class="col-right">
+    <div class="block">
+      <h2 class="block-title">Photos</h2>
+      <div class="downloads-stack">
+        <a class="download-card" href="mill.pdf" download="VinnieTrav_Logo.pdf">
+          <div class="logo-preview">
+            <img src="drive-download-20260327T160708Z-3-001/13B56DFB-1FD1-4349-A36A-8C324F6EDE13_1_102_o.jpeg" alt="VT Logo">
+          </div>
+          <div class="dl-label">
+            Logo (Vector PDF)
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+        <a class="download-card" href="drive-download-20260327T160708Z-3-001/4DF44820-7F87-4BBB-95B3-9144921F4393_1_105_c.jpeg" download="VinnieTrav_Press_01.jpeg">
+          <img src="drive-download-20260327T160708Z-3-001/4DF44820-7F87-4BBB-95B3-9144921F4393_1_105_c.jpeg" alt="Press photo">
+          <div class="dl-label">
+            Press Shot
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+        <a class="download-card" href="drive-download-20260327T160708Z-3-001/32BDCBFF-9F9E-463A-80B1-95235BBF5E01.jpeg" download="VinnieTrav_Press_02.jpeg">
+          <img src="drive-download-20260327T160708Z-3-001/32BDCBFF-9F9E-463A-80B1-95235BBF5E01.jpeg" alt="Live performance">
+          <div class="dl-label">
+            Live Shot
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+        <a class="download-card" href="drive-download-20260327T160708Z-3-001/9B65545D-8E5B-47B0-B651-46CA08E5273F.jpeg" download="VinnieTrav_Press_03.jpeg">
+          <img src="drive-download-20260327T160708Z-3-001/9B65545D-8E5B-47B0-B651-46CA08E5273F.jpeg" alt="Live performance">
+          <div class="dl-label">
+            Live Shot
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+        <a class="download-card" href="drive-download-20260327T160708Z-3-001/54665F1D-9A9A-4168-A2B2-C5CC6891AC73_1_201_a.jpeg" download="VinnieTrav_Press_04.jpeg">
+          <img src="drive-download-20260327T160708Z-3-001/54665F1D-9A9A-4168-A2B2-C5CC6891AC73_1_201_a.jpeg" alt="Festival stage">
+          <div class="dl-label">
+            Festival Stage
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+        <a class="download-card" href="drive-download-20260327T160708Z-3-001/0E3386F8-A318-46FA-B6E9-23BCAB85B9A7.jpeg" download="VinnieTrav_Press_05.jpeg">
+          <img src="drive-download-20260327T160708Z-3-001/0E3386F8-A318-46FA-B6E9-23BCAB85B9A7.jpeg" alt="Duo performance">
+          <div class="dl-label">
+            Duo Shot
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    var CALENDAR_ID = '3e36a345d5ce8fc8200aa7aa9bf32c1c651fe8d4b2e5138d25072f009f2ea345@group.calendar.google.com';
+    var container = document.getElementById('shows-container');
+    var now = new Date().toISOString();
+    var url = 'https://clients6.google.com/calendar/v3/calendars/' +
+      encodeURIComponent(CALENDAR_ID) +
+      '/events?calendarId=' + encodeURIComponent(CALENDAR_ID) +
+      '&singleEvents=true&orderBy=startTime&timeMin=' + encodeURIComponent(now) +
+      '&maxResults=10&sanitizeHtml=true&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs';
+
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var events = (data.items || []).filter(function(e) {
+          return e.status !== 'cancelled';
+        });
+        if (!events.length) {
+          container.innerHTML = '<div class="shows-empty">No upcoming shows scheduled. Check back soon!</div>';
+          return;
+        }
+        var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+        var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        var html = '<div class="shows-list">';
+        events.forEach(function(e) {
+          var start = e.start.dateTime ? new Date(e.start.dateTime) : new Date(e.start.date + 'T00:00:00');
+          var isAllDay = !e.start.dateTime;
+          var timeStr = isAllDay ? 'All Day' : start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          var location = e.location || '';
+          html += '<div class="show-item">' +
+            '<div class="show-date">' +
+              '<div class="month">' + months[start.getMonth()] + '</div>' +
+              '<div class="day">' + start.getDate() + '</div>' +
+              '<div class="dow">' + days[start.getDay()] + '</div>' +
+            '</div>' +
+            '<div class="show-info">' +
+              '<div class="show-title">' + (e.summary || 'TBA') + '</div>' +
+              '<div class="show-time">' + timeStr + (location ? ' &mdash; ' + location : '') + '</div>' +
+            '</div>' +
+          '</div>';
+        });
+        html += '</div>';
+        container.innerHTML = html;
+      })
+      .catch(function() {
+        container.innerHTML = '<div class="shows-empty">Visit <a href="https://vinnietrav.com" style="color:#C5A55A;">vinnietrav.com</a> for show dates.</div>';
+      });
+  })();
+</script>
+
+</body>
+</html>
