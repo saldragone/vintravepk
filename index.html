@@ -397,8 +397,15 @@
         height: 100%;
       }
       .col-main { padding: 28px 20px; }
+      .col-right {
+        grid-column: 1 / -1;
+        border-left: none;
+        border-top: 1px solid rgba(197,165,90,0.08);
+        padding: 28px 20px;
+      }
       .music-row { grid-template-columns: 1fr; }
       .downloads-stack {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -487,22 +494,12 @@
       </div>
     </div>
 
-    <!-- Downloads shown inline on smaller screens -->
-    <div class="block mobile-downloads" style="display:none;">
-      <h2 class="block-title">Photos &amp; Downloads</h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" id="mobile-dl"></div>
-    </div>
-
-    <div class="footer-line">
-      &copy; 2026 Vinnie Trav. All Rights Reserved.
-    </div>
-
   </div>
 
   <!-- RIGHT: Photos & Downloads -->
   <div class="col-right">
     <div class="block">
-      <h2 class="block-title">Photos</h2>
+      <h2 class="block-title">Photos &amp; Downloads</h2>
       <div class="downloads-stack">
         <a class="download-card" href="mill.pdf" download="VinnieTrav_Logo.pdf">
           <div class="logo-preview">
@@ -551,6 +548,10 @@
       </div>
     </div>
   </div>
+
+  <footer class="footer-line" style="grid-column: 1 / -1; padding: 20px 36px;">
+    &copy; 2026 Vinnie Trav. All Rights Reserved.
+  </footer>
 
 </div>
 
