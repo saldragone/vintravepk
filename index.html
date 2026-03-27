@@ -375,10 +375,14 @@
         grid-template-columns: 35% 1fr;
       }
       .col-right {
-        display: none;
+        grid-column: 1 / -1;
+        border-left: none;
+        border-top: 1px solid rgba(197,165,90,0.08);
       }
-      /* show downloads inline in main col on tablet */
-      .mobile-downloads { display: block !important; }
+      .downloads-stack {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @media (max-width: 700px) {
@@ -394,7 +398,9 @@
       }
       .col-main { padding: 28px 20px; }
       .music-row { grid-template-columns: 1fr; }
-      .mobile-downloads { display: block !important; }
+      .downloads-stack {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
